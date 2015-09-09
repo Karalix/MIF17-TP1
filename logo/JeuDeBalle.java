@@ -6,22 +6,20 @@ import java.util.ArrayList;
 
 /** class JeuDeBalle.
 */
-public final class JeuDeBalle
+public class JeuDeBalle
 {
-   private List<TortueAmelioree> joueuses;
-   private TortueBalle balle ;
+   protected List<TortueAmelioree> joueuses;
+   protected TortueBalle balle ;
 
-   /** Constructor. */
-   public JeuDeBalle()
-   {
+    public JeuDeBalle() {
       joueuses = new ArrayList<TortueAmelioree>();
-   }
-
-   public void initJeu()
-   {
+       
       balle = new TortueBalle();
       joueuses.add(new TortueAmelioree("Messi"));
       joueuses.add(new TortueAmelioree("Zidane"));
+      joueuses.add(new TortueAmelioree("Thuram"));
+      joueuses.add(new TortueAmelioree("Henry"));
+      joueuses.add(new TortueAmelioree("Platini"));
 
       for(TortueAmelioree t : joueuses)
       {
@@ -29,7 +27,7 @@ public final class JeuDeBalle
       }
 
 	joueuses.get(0).receiveBalle(balle);
-   }
+    }
 
    public void ajouterJoueusesEnAmies(TortueAmelioree tortue)
    {
@@ -37,7 +35,7 @@ public final class JeuDeBalle
       tortue.RemoveFriend(tortue);
    }
 
-   private void jouerUnTour()
+   protected void jouerUnTour()
    {
 	for(TortueAmelioree t : joueuses)
 	{

@@ -6,8 +6,6 @@ package logo;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.*;
-import java.io.*;
 //import logo.TortueAmelioree;
 
 
@@ -230,8 +228,9 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
 	public void procJouer()
 	{
+           this.courante = null ;
+           this.effacer();
 	   JeuDeBalle jeu = new JeuDeBalle();
-	   jeu.initJeu();
 	   for(TortueAmelioree ta : jeu.getJoueuses())
 	   {
 	      ta.setPosition(500/2, 400/2);
@@ -250,7 +249,10 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
 		// Replace la tortue au centre
 		Dimension size = feuille.getSize();
-		courante.setPosition(size.width/2, size.height/2);
+                if(courante != null)
+                {
+                    courante.setPosition(size.width/2, size.height/2);
+                }
 	}
 
 	//utilitaires pour installer des boutons et des menus

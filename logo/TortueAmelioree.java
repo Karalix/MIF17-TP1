@@ -17,10 +17,12 @@ import java.util.Random;
  * @author p1410147
  */
 public class TortueAmelioree extends Tortue{
-    private String nom;
-    private List<TortueAmelioree> amies;
-    private static String nomDefaut = "Anonyme";
-    private TortueBalle maBalle = null ;
+    protected String nom;
+    protected List<TortueAmelioree> amies;
+    protected static String nomDefaut = "Anonyme";
+    protected TortueBalle maBalle = null ;
+    
+    protected static Random rand = new Random();
 
     public TortueAmelioree(){
         this(nomDefaut);
@@ -66,17 +68,14 @@ public class TortueAmelioree extends Tortue{
             if(DistanceTortue(t) < 15)
             {
                 saluerAmie(t);
-                t.avancer(2);
+                //t.avancer(2);
             }
         }
 
     }
 
-    private void saluerAmie(TortueAmelioree t) {
-        if(maBalle != null)
-        {
-        	System.out.println("Salut " + t.getNom() + ", attrape la balle ! ");
-        }
+    protected void saluerAmie(TortueAmelioree t) {
+        
         this.passerBalle(t);
     }
 
@@ -88,7 +87,6 @@ public class TortueAmelioree extends Tortue{
     {
        maBalle = balle ;
        maBalle.setPosition(this.x, this.y);
-       System.out.println(this.getNom() + " : j'ai re�u la balle !");
     }
     public void passerBalle(TortueAmelioree destinataire)
     {
@@ -96,14 +94,16 @@ public class TortueAmelioree extends Tortue{
        {
           return ;
        }
+       
+       System.out.println(destinataire.getNom() + " recoit la balle de " + this.getNom());
        destinataire.receiveBalle(maBalle);
        maBalle = null ;
     }
 
     public void jouer()
     {
-       Random rand = new Random();
-       int distance = rand.nextInt(15);
+       
+       int distance = rand.nextInt(30);
        int angle = rand.nextInt(360);
 
        this.droite(angle);
