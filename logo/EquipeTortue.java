@@ -30,5 +30,9 @@ public class EquipeTortue {
     {
         joueuses.add(joueuse);
     }
+
+    String getNom() {
+        return nomEquipe ;
+    }
     
 }

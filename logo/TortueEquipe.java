@@ -12,19 +12,17 @@ import java.util.List;
  * @author Alix
  */
 public class TortueEquipe extends TortueAmelioree {
-    private String nomEquipe;
     private EquipeTortue equipe;
     private JeuEquipe jeu ;
 
-    public TortueEquipe(String nomEquipe, String nom, EquipeTortue equipe, JeuEquipe jeu) {
+    public TortueEquipe(String nom, EquipeTortue equipe, JeuEquipe jeu) {
         super(nom);
-        this.nomEquipe = nomEquipe;
         this.equipe = equipe ;
         this.jeu = jeu ;
     }
 
     public String getNomEquipe() {
-        return nomEquipe;
+        return this.equipe.getNom();
     }
     
     
@@ -45,12 +43,30 @@ public class TortueEquipe extends TortueAmelioree {
 
     @Override
     public void jouer() {
+        int angle = 0 ;
+        int dist = rand.nextInt(30) ;
         //si j'ai la balle, je m'éloigne du plus proche adversaire
         if(maBalle != null)
         {
-            getNearestOpponent();
+            TortueEquipe nearestOpponent = getNearestOpponent();
+            if(nearestOpponent == null)
+            {
+                System.out.println("Je ne joue contre aucun adversaire, à quoi rime cette mise en scène ? Jouer n'a aucune saveur sans adversaire, sans obstacle à surpasser.");
+                return ;
+            }
+            int angleOppose = (int)calculateAngleToFaceTurtleByTurningToRight(nearestOpponent);
+            angle = angleOppose < 0 ? angleOppose + 180 : angleOppose -180 ;
+        } else {//si j'ai pas la balle, je me rapproche de la balle
+            if(jeu.balle == null)
+            {
+                System.out.println("Je joue sans aucune balle ? Ô quelle cruauté de mon créateur de m'avoir conçu dans un unique but sans toutefois me donner les moyens pour l'accomplir !");
+                return ;
+            }
+            angle = (int)calculateAngleToFaceTurtleByTurningToRight(jeu.balle);
         }
-        //si j'ai pas la balle, je me rapproche de la balle
+        
+        this.droite(angle);
+        this.avancer(dist);
     }
 
     private TortueEquipe getNearestOpponent() {
@@ -61,6 +77,10 @@ public class TortueEquipe extends TortueAmelioree {
         for(Tortue t : jeu.getJoueuses())
         {   
             TortueEquipe te = (TortueEquipe)t ;
+            if(te.getNomEquipe() == this.getNomEquipe())
+            {
+                continue;
+            }
             double distance = DistanceTortue(t);
             if(first && te.getNomEquipe() != this.getNomEquipe())
             {
@@ -79,8 +99,15 @@ public class TortueEquipe extends TortueAmelioree {
         return nearestOpponent ;
     }
     
-    private boolean isFromMyTeam(TortueEquipe t)
+    private double calculateAngleToFaceTurtleByTurningToRight(Tortue t)
     {
-        return false ;
+        double deltay = t.y - this.y ;
+        double deltaX = t.x - this.x ;
+        
+        double phi = Math.atan2(deltay, deltaX);
+        
+        
+        return (phi*(180/Math.PI))-dir ;
     }
+    
 }

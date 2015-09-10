@@ -71,6 +71,10 @@ public class TortueAmelioree extends Tortue{
                 //t.avancer(2);
             }
         }
+        if(maBalle != null)
+       {
+       	maBalle.setPosition(this.x, this.y);
+       }
 
     }
 
@@ -108,9 +112,6 @@ public class TortueAmelioree extends Tortue{
 
        this.droite(angle);
        this.avancer(distance);
-       if(maBalle != null)
-       {
-       	maBalle.setPosition(this.x, this.y);
-       }
+       
     }
 }

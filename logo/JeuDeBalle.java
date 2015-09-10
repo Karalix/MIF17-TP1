@@ -48,14 +48,6 @@ public class JeuDeBalle
       for(int i=0; i< nbTours;i++)
       {
          jouerUnTour();
-         /*
-         try
-         {
-         	Thread.sleep(333);
-         } catch(InterruptedException e)
-         {
-         }
-         */
       }
    }
 

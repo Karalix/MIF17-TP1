@@ -126,6 +126,9 @@ public class SimpleLogo extends JFrame implements ActionListener {
 		JButton bJouer = new JButton("Jouer");
 		p2.add(bJouer);
 		bJouer.addActionListener(this);
+                JButton bJouerEquipe = new JButton("JouerEquipe");
+		p2.add(bJouerEquipe);
+		bJouerEquipe.addActionListener(this);
 
 		getContentPane().add(p2,"South");
 
@@ -198,6 +201,8 @@ public class SimpleLogo extends JFrame implements ActionListener {
 			proc3();
 		else if (c.equals("Jouer"))
 			procJouer();
+                else if (c.equals("JouerEquipe"))
+			procJouerEquipe();
 		else if (c.equals("Effacer"))
 			effacer();
 		else if (c.equals("Quitter"))
@@ -240,6 +245,21 @@ public class SimpleLogo extends JFrame implements ActionListener {
 	   this.feuille.addTortue(jeu.getBalle());
 
 	   jeu.jouer(12);
+	}
+        
+        public void procJouerEquipe()
+	{
+           this.courante = null ;
+           this.effacer();
+	   JeuEquipe jeu = new JeuEquipe();
+	   for(TortueAmelioree ta : jeu.getJoueuses())
+	   {
+	      this.feuille.addTortue(ta);
+	   }
+
+	   this.feuille.addTortue(jeu.getBalle());
+
+	   jeu.jouer(2);
 	}
 
 	// efface tout et reinitialise la feuille
