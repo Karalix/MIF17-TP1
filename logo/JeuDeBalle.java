@@ -3,6 +3,8 @@ package logo;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** class JeuDeBalle.
 */
@@ -10,9 +12,11 @@ public class JeuDeBalle
 {
    protected List<TortueAmelioree> joueuses;
    protected TortueBalle balle ;
+   protected FeuilleDessin feuille ;
 
-    public JeuDeBalle() {
+    public JeuDeBalle(FeuilleDessin feuille) {
       joueuses = new ArrayList<TortueAmelioree>();
+      this.feuille = feuille ;
        
       balle = new TortueBalle();
       joueuses.add(new TortueAmelioree("Messi"));
@@ -45,10 +49,21 @@ public class JeuDeBalle
 
    public void jouer(int nbTours)
    {
-      for(int i=0; i< nbTours;i++)
-      {
-         jouerUnTour();
-      }
+        Thread th = new Thread(){
+            public void run(){
+               for(int i=0; i< nbTours;i++)
+               {
+                   jouerUnTour();
+                   feuille.repaint();
+                   try {
+                       Thread.sleep(200);
+                   } catch (InterruptedException ex) {
+                       Logger.getLogger(JeuDeBalle.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+            }
+        };
+        th.start();
    }
 
    public List<TortueAmelioree> getJoueuses()

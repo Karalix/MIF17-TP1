@@ -33,7 +33,7 @@ public class TortueEquipe extends TortueAmelioree {
         {
             super.saluerAmie(t);
         } else {
-            if(t.maBalle != null && rand.nextBoolean())//Si l'adversaire possède la balle, il y a 50% de chance de récupérer la balle
+            if(t.maBalle != null && rand.nextInt(10)<3)//Si l'adversaire possède la balle, il y a 50% de chance de récupérer la balle
             {
                 t.passerBalle(this);
                 System.out.println(this.getNom()+ " a contré "+t.getNom()+" et a récupéré la balle");
@@ -109,5 +109,25 @@ public class TortueEquipe extends TortueAmelioree {
         
         return (phi*(180/Math.PI))-dir ;
     }
+
+    @Override
+    public void passerBalle(TortueAmelioree destinataire) {
+        super.passerBalle(destinataire); //To change body of generated methods, choose Tools | Templates.
+        if(((TortueEquipe)destinataire).getNomEquipe() != this.getNomEquipe())
+        {
+            equipe.resetScore();
+        }
+    }
+
+    @Override
+    public void receiveBalle(TortueBalle balle) {
+        super.receiveBalle(balle); //To change body of generated methods, choose Tools | Templates.
+        equipe.incScore();
+        droite(1);
+        //avancer(3);
+    }
+    
+    
+    
     
 }

@@ -148,6 +148,24 @@ public class Tortue
 	public void avancer(int dist) {
 		int newX = (int) Math.round(x+dist*Math.cos(ratioDegRad*dir));
 		int newY = (int) Math.round(y+dist*Math.sin(ratioDegRad*dir));
+                
+                //Rembondissement des tortues sur les bords
+                if(newX>600)
+                {
+                    newX=600-(newX-600);
+                }
+                if(newY>400)
+                {
+                    newY=400-(newY-400);
+                }
+                if(newX<0)
+                {
+                    newX=0-newX;
+                }
+                if(newY<0)
+                {
+                    newY=0-newY;
+                }
 		
 		if (crayon==true) {
 			Segment seg = new Segment();

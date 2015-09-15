@@ -129,6 +129,9 @@ public class SimpleLogo extends JFrame implements ActionListener {
                 JButton bJouerEquipe = new JButton("JouerEquipe");
 		p2.add(bJouerEquipe);
 		bJouerEquipe.addActionListener(this);
+                JButton bEtoile = new JButton("Etoile");
+		p2.add(bEtoile);
+		bEtoile.addActionListener(this);
 
 		getContentPane().add(p2,"South");
 
@@ -203,6 +206,8 @@ public class SimpleLogo extends JFrame implements ActionListener {
 			procJouer();
                 else if (c.equals("JouerEquipe"))
 			procJouerEquipe();
+                else if (c.equals("Etoile"))
+			procEtoile();
 		else if (c.equals("Effacer"))
 			effacer();
 		else if (c.equals("Quitter"))
@@ -210,16 +215,21 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
 		feuille.repaint();
 	}
+        
+
+        public void procEtoile() {
+
+                courante.etoile(10,50);
+        }
 
   	/** les procedures Logo qui combine plusieurs commandes..*/
 	public void proc1() {
                 TortueAmelioree tortue1 = new TortueAmelioree("a");
                 tortue1.EcrireNom();
-		//courante.etoile(10,50);
 	}
 
 	public void proc2() {
-		//courante.poly(60,8);
+		courante.poly(60,8);
                 TestTortue();
 	}
 
@@ -235,7 +245,7 @@ public class SimpleLogo extends JFrame implements ActionListener {
 	{
            this.courante = null ;
            this.effacer();
-	   JeuDeBalle jeu = new JeuDeBalle();
+	   JeuDeBalle jeu = new JeuDeBalle(feuille);
 	   for(TortueAmelioree ta : jeu.getJoueuses())
 	   {
 	      ta.setPosition(500/2, 400/2);
@@ -251,7 +261,7 @@ public class SimpleLogo extends JFrame implements ActionListener {
 	{
            this.courante = null ;
            this.effacer();
-	   JeuEquipe jeu = new JeuEquipe();
+	   JeuEquipe jeu = new JeuEquipe(feuille);
 	   for(TortueAmelioree ta : jeu.getJoueuses())
 	   {
 	      this.feuille.addTortue(ta);
@@ -259,7 +269,7 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
 	   this.feuille.addTortue(jeu.getBalle());
 
-	   jeu.jouer(2);
+	   jeu.jouer();
 	}
 
 	// efface tout et reinitialise la feuille
@@ -330,4 +340,5 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
 
         }
+
 }

@@ -15,10 +15,12 @@ import java.util.List;
 public class EquipeTortue {
     private String nomEquipe;
     private List<TortueEquipe> joueuses ;
+    private int currentScore ;
 
     public EquipeTortue(String nomEquipe) {
         this.nomEquipe = nomEquipe;
         this.joueuses = new ArrayList<>();
+        this.currentScore = 0 ;
     }
     
     public List<TortueEquipe> getJoueuses()
@@ -35,4 +37,18 @@ public class EquipeTortue {
         return nomEquipe ;
     }
     
+    public void resetScore()
+    {
+        currentScore = 0 ;
+    }
+    
+    public int getScore()
+    {
+        return currentScore ;
+    }
+    
+    public void incScore()
+    {
+        currentScore ++ ;
+    }
 }
