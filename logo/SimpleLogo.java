@@ -132,6 +132,9 @@ public class SimpleLogo extends JFrame implements ActionListener {
                 JButton bEtoile = new JButton("Etoile");
 		p2.add(bEtoile);
 		bEtoile.addActionListener(this);
+                JButton bMaison = new JButton("Maison");
+		p2.add(bMaison);
+		bMaison.addActionListener(this);
 
 		getContentPane().add(p2,"South");
 
@@ -208,6 +211,8 @@ public class SimpleLogo extends JFrame implements ActionListener {
 			procJouerEquipe();
                 else if (c.equals("Etoile"))
 			procEtoile();
+                else if (c.equals("Maison"))
+			procMaison();
 		else if (c.equals("Effacer"))
 			effacer();
 		else if (c.equals("Quitter"))
@@ -224,13 +229,11 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
   	/** les procedures Logo qui combine plusieurs commandes..*/
 	public void proc1() {
-                TortueAmelioree tortue1 = new TortueAmelioree("a");
-                tortue1.EcrireNom();
+                courante.carre();
 	}
 
 	public void proc2() {
 		courante.poly(60,8);
-                TestTortue();
 	}
 
 	public void proc3() {
@@ -271,6 +274,10 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
 	   jeu.jouer();
 	}
+        
+        private void procMaison() {
+            courante.maison();
+        }
 
 	// efface tout et reinitialise la feuille
 	public void effacer() {
@@ -340,5 +347,6 @@ public class SimpleLogo extends JFrame implements ActionListener {
 
 
         }
+
 
 }

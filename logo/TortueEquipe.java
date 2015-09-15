@@ -19,6 +19,7 @@ public class TortueEquipe extends TortueAmelioree {
         super(nom);
         this.equipe = equipe ;
         this.jeu = jeu ;
+        this.coul = equipe.getColor();
     }
 
     public String getNomEquipe() {

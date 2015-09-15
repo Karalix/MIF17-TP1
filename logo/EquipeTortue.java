@@ -16,11 +16,13 @@ public class EquipeTortue {
     private String nomEquipe;
     private List<TortueEquipe> joueuses ;
     private int currentScore ;
+    private int color = 0 ;
 
-    public EquipeTortue(String nomEquipe) {
+    public EquipeTortue(String nomEquipe, int color) {
         this.nomEquipe = nomEquipe;
         this.joueuses = new ArrayList<>();
         this.currentScore = 0 ;
+        this.color = color ;
     }
     
     public List<TortueEquipe> getJoueuses()
@@ -50,5 +52,9 @@ public class EquipeTortue {
     public void incScore()
     {
         currentScore ++ ;
+    }
+
+    int getColor() {
+        return this.color ;
     }
 }

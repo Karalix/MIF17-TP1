@@ -28,8 +28,8 @@ public class JeuEquipe extends JeuDeBalle {
         
         balle = new TortueBalle();
         
-        equipe1 = new EquipeTortue("France");
-        equipe2 = new EquipeTortue("Espagne");
+        equipe1 = new EquipeTortue("France", 1);
+        equipe2 = new EquipeTortue("Espagne", 4);
         
         TortueEquipe t1 = new TortueEquipe("1", equipe1, this);
         t1.setPosition(500/6, 400/2-100);
